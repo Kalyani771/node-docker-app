@@ -24,11 +24,7 @@ pipeline {
             }
         }
 
-        stage('Push Docker Image') {
-            steps {
-                sh 'docker push laxmi916/node-docker-app:${BUILD_NUMBER}'
-            }
-        }
+        
         
         stage('Create container') {
             steps {
