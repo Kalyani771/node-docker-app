@@ -19,20 +19,20 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                docker build -t node-docker-app:${BUILD_NUMBER} .
+                docker build -t laxmi916/node-docker-app:${BUILD_NUMBER} .
                 '''
             }
         }
 
-        // stage('Push Docker Image') {
-        //     steps {
-        //         sh 'docker push laxmi916/node-docker-app:${BUILD_NUMBER}'
-        //     }
-        // }
+        stage('Push Docker Image') {
+            steps {
+                sh 'docker push laxmi916/node-docker-app:${BUILD_NUMBER}'
+            }
+        }
         
         stage('Create container') {
             steps {
-                sh 'docker run -d -p 3000:8080 node-docker-app:${BUILD_NUMBER}'
+                sh 'docker run -d -p laxmi916/3000:8080 node-docker-app:${BUILD_NUMBER}'
             }
         }
 
